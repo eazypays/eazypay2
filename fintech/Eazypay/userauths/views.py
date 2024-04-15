@@ -4,7 +4,12 @@ from django.contrib import messages
 from userauths.models import User
 from userauths.forms import UserRegisterForm
 # Create your views here.
-def RegisterView(request):
+
+def index (request):
+    pass
+
+
+def  RegisterView(request):
     if request.user.is_authenticated:
         messages.warning(request, f"You are already logged in.")
         return redirect("account:account")
@@ -24,11 +29,11 @@ def RegisterView(request):
             return redirect("account:account")
 
     else:
-        form = UserRegisterForm()
+        form = UserRegisterForm()   
     context = {
         "form": form
     }
-    return render(request, "userauths/sign-up.html", context)
+    return render(request, "userauths/signup.html", context)
 
 
 def LoginView(request):
@@ -54,7 +59,7 @@ def LoginView(request):
         messages.warning(request, "You are already logged In")
         return redirect("account:account")
         
-    return render(request, "userauths/sign-in.html")
+    return render(request, "userauths/signin.html")
 
 def logoutView(request):
     logout(request)
